@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Liste des étudiants</title>
+    <style type="text/css">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #0078D7;
+            color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .btn-add {
+            background-color: #107C10;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .btn-add:hover {
+            background-color: #0b5a0b;
+        }
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-radius: 4px;
+        }
+        .student-table th {
+            background-color: #f0f0f0;
+            padding: 10px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+        }
+        .student-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .student-table tr:last-child td {
+            border-bottom: none;
+        }
+        .action-btn {
+            padding: 6px 12px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .edit-btn {
+            background-color: #FFB900;
+            color: #333;
+        }
+        .edit-btn:hover {
+            background-color: #d99e00;
+        }
+        .delete-btn {
+            background-color: #E81123;
+            color: white;
+        }
+        .delete-btn:hover {
+            background-color: #c41626;
+        }
+        .empty-message {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <div class="container">
+        <div class="header">
+            <h1>Liste des étudiants</h1>
+            <h:link outcome="addStudents" styleClass="btn-add">
+                Ajouter un étudiant
+            </h:link>
+        </div>
+
+        <h:form id="studentListForm">
+            <h:dataTable value="#{Student.students}" var="student" styleClass="student-table"
+                         rendered="#{not empty Student.students}">
+                <h:column>
+                    <f:facet name="header">Nom</f:facet>
+                    #{student.name}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Email</f:facet>
+                    #{student.email}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Âge</f:facet>
+                    #{student.age}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandButton value="Modifier" action="#{Student.updateStudent}" styleClass="action-btn edit-btn"/>
+                    <h:commandButton value="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet étudiant?');"
+                                     action="#{Student.deleteStudent(student.id)}" styleClass="action-btn delete-btn"/>
+                </h:column>
+            </h:dataTable>
+
+            <h:panelGroup rendered="#{empty StudentBean.students}">
+                <div class="empty-message">
+                    <h3>Aucun étudiant disponible</h3>
+                    <p>Ajoutez de nouveaux étudiants en utilisant le bouton ci-dessus.</p>
+                </div>
+            </h:panelGroup>
+        </h:form>
+    </div>
+</h:body>
+</html>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-source-infos>
+      <data-source-info id="22a6f971-ac1a-4da6-8c4d-a02b658808ac" persistence-unit-name="JPAStudent:my-persistence" />
+    </data-source-infos>
+  </component>
+</project>
