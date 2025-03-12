@@ -8,6 +8,8 @@ public class Main {
     public static void main(String[] args) {
         EntityManagerFactory emf = null;
         EntityManager em = null;
+        StudentDAO studentDAO = new StudentDAOImpl();
+        AddressDAO addressDAO = new AddressDAOImpl();
         
         try {
             emf = Persistence.createEntityManagerFactory("Student");
@@ -30,13 +32,11 @@ public class Main {
             student.setAddress(address);
             address.setStudent(student);
 
-            em.getTransaction().begin();
-            em.persist(address);
-            em.getTransaction().commit();
-            
+            addressDAO.insertAddress(address);
+
             System.out.println("L'ajout avec succès!");
             
-            em.clear();
+
             
             Long studentId = student.getId();
             Student stud = em.find(Student.class, studentId);

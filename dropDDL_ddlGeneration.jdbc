@@ -1,3 +1,4 @@
-ALTER TABLE addresses DROP FOREIGN KEY FK_addresses_student_id
+ALTER TABLE students DROP FOREIGN KEY FK_students_ADDRESS_ID
+ALTER TABLE addresses DROP FOREIGN KEY FK_addresses_STUDENT_ID
 DROP TABLE students
 DROP TABLE addresses

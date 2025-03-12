@@ -25,7 +25,7 @@ public class Address implements Serializable {
     private String country;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_id", referencedColumnName = "id")
+    //@JoinColumn(name = "student_id", referencedColumnName = "id")
     private Student student;
 
     public Address() {

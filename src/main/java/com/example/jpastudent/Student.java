@@ -20,7 +20,7 @@ public class Student implements Serializable {
     @Column(nullable = false)
     private int age;
 
-    @OneToOne(mappedBy = "student")
+    @OneToOne
     private Address address;
     
     public Student() {
